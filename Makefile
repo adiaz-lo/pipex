@@ -26,7 +26,7 @@ ARFLAGS = -rcs
 
 RM = rm -f
 
-SRCS = pipex.c check_args.c free_pipex.c search_path.c throw_error.c check_command_access.c
+SRCS = pipex.c check_args.c free_pipex.c search_path.c throw_error.c check_command_access.c exec_first_child.c exec_second_child.c
 
 DIR_PREFIX = $(addprefix $(SRC_DIR), $(SRCS))
 

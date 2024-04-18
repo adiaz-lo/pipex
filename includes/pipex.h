@@ -3,6 +3,7 @@
 
 // INCLUDES DECLARATION
 # include "../libft/includes/libft.h"
+# include <sys/wait.h>
 # include <fcntl.h>
 
 // Macros Declaration
@@ -10,15 +11,19 @@
 # define PATH_STR "PATH="
 # define PATH_CHAR_NUM 5
 # define DELIMITER ':'
+# define SLASH "/"
+# define STD_READ 0
+# define STD_WRITE 1
 
 // Struct Declaration
 typedef struct s_pipex
 {
-	int fd_in;
-	char **cmd_1;
-	char *cmd_2;
-	int	fd_out;
-	char **path;
+	int 	fd_in;
+	char	**cmd_1;
+	char	**cmd_2;
+	int		fd_out;
+	char	**path;
+	int		pipe_fd[2];
 }t_pipex;
 
 // Functions Declaration
@@ -30,6 +35,8 @@ int			check_args(int argc, char **argv);
 char		**search_path(char **env);
 void		throw_error(char *str);
 void		free_pipex(t_pipex *);
-int			check_command_access(t_pipex *, char *cmd, char **envp);
+int			check_command_access(t_pipex *, char **cmd, char **envp);
+void		exec_first_child(t_pipex *, char **envp);
+void		exec_second_child(t_pipex *, char **envp);
 
 #endif

@@ -10,6 +10,7 @@ static int		check_args_num(int argc)
 	return (0);
 }
 
+//Check access to the file
 int		check_file(char *file_read)
 {
 	int	fd;
