@@ -10,7 +10,6 @@ static int		check_args_num(int argc)
 	return (0);
 }
 
-//Check access to the file
 int		check_file(char *file_read)
 {
 	int	fd;
@@ -35,12 +34,5 @@ int				check_args(int argc, char **argv)
 		return (1);
 		throw_error("File doesn't exist or you haven't got access to it");
 	}
-//	if (!(check_command_access()))
-//		return (1);
-//	if (!(search_path(envp)))
-//	{
-//			return (1);
-//			perror("Path doesn't");
-//	}
-			return (0);
+	return (0);
 }

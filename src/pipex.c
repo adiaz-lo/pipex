@@ -7,19 +7,7 @@ t_pipex	*save_args(char **argv, char **envp)
 	pipex = malloc(sizeof(t_pipex));
 	pipex->fd_in = check_file(argv[1]);
 	pipex->cmd_1 = ft_split(argv[2], ' ');
-	int i = 0;
-	while (pipex->cmd_1[i])
-	{
-		//printf("Command 1: %s\n", pipex->cmd_1[i]);
-		i++;
-	}
 	pipex->cmd_2 = ft_split(argv[3], ' ');
-	i = 0;
-	while (pipex->cmd_2[i])
-	{
-		//printf("Command 2: %s\n", pipex->cmd_2[i]);
-		i++;
-	}
 	//pipex->fd_out = ft_atoi(argv[4]);		Preguntar a Cris por esto
 	pipex->fd_out = open(argv[4], O_WRONLY | O_TRUNC | O_CREAT, 0700);
 	pipex->path = search_path(envp);
@@ -40,8 +28,6 @@ int	main (int argc, char **argv, char **envp)
 {
 	pid_t	child_pid;
 	t_pipex	*pipex;
-	//	char	**cmd_1;
-	//	char	**cmd_2;
 	int		*status_pid;
 
 	if (!(check_args(argc, argv)))
@@ -61,7 +47,6 @@ int	main (int argc, char **argv, char **envp)
 	{
 		wait(status_pid);
 		close(pipex->pipe_fd[STD_WRITE]);
-		//read(pipex->pipe_fd[STD_IN]);
 		child_pid = fork();
 		if (child_pid == -1)
 			throw_error("Child process creation error");
@@ -72,7 +57,7 @@ int	main (int argc, char **argv, char **envp)
 			free_pipex(pipex);
 			wait(status_pid);
 		}
-		getchar();
+		//getchar();
 	}
 	return (0);
 }
