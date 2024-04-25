@@ -9,10 +9,11 @@ void	free_pipex(t_pipex **pipex)
 	while ((*pipex)->cmd_1[++i])
 		free((*pipex)->cmd_1[i]);
 	free((*pipex)->cmd_1);
-//	i = -1;
-//	while ((*pipex)->cmd_2[++i])
-//		free((*pipex)->cmd_2[i]);
-//	free((*pipex)->cmd_2);
+  //	Caso que el 2° comando falle, libero el 1° igualmente
+	i = -1;
+	while ((*pipex)->cmd_2[++i])
+		free((*pipex)->cmd_2[i]);
+	free((*pipex)->cmd_2);
 	err_stat = close((*pipex)->fd_in);
 	err_stat = close((*pipex)->fd_out);
 	i = -1;

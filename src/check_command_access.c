@@ -9,6 +9,7 @@ int		check_command_access(t_pipex *pipex, char **cmd)
 
 	i = 0;
 	status = 0;
+//	fprintf(stderr, "%p\n", &pipex->cmd_1);
 	while (pipex->path[i])
 	{
 		aux_path_plus_cmd = ft_strjoin(pipex->path[i], SLASH);

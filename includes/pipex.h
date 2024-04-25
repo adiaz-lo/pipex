@@ -38,5 +38,6 @@ void		free_pipex(t_pipex **);
 int			check_command_access(t_pipex *, char **cmd);
 void		exec_first_child(t_pipex *, char **envp);
 void		exec_second_child(t_pipex *, char **envp);
+int			return_exec_code(int status);
 
 #endif

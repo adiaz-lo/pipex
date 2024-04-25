@@ -6,7 +6,7 @@
 #    By: adiaz-lo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 12:49:56 by adiaz-lo          #+#    #+#              #
-#    Updated: 2024/04/25 13:03:28 by adiaz-lo         ###   ########.fr        #
+#    Updated: 2024/04/25 16:55:40 by adiaz-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_DIR = src/
 
 CCFLAGS = -Wall -Werror -Wextra -pedantic
 
-#CCFLAGS += -fsanitize=address -g3 -fsanitize=leak
+CCFLAGS += -fsanitize=address -g3 -fsanitize=leak
 
 INCLUDE = includes/pipex.h
 
@@ -28,7 +28,7 @@ ARFLAGS = -rcs
 
 RM = rm -f
 
-SRCS = pipex.c check_args.c free_pipex.c search_path.c throw_error.c check_command_access.c exec_first_child.c exec_second_child.c
+SRCS = pipex.c check_args.c free_pipex.c search_path.c throw_error.c check_command_access.c exec_first_child.c exec_second_child.c save_args.c return_exec_code.c
 
 DIR_PREFIX = $(addprefix $(SRC_DIR), $(SRCS))
 
@@ -37,15 +37,15 @@ OBJS = $(DIR_PREFIX:.c=.o)
 all : $(NAME)
 
 %.o : %.c
-	#$(CC) $(CCFLAGS) -c -o $@ $<
-	$(CC) -c -o $@ $<
+	$(CC) $(CCFLAGS) -c -o $@ $<
+	#$(CC) -c -o $@ $<
 
 $(DEPS): 
 	make -C libft
 
 $(NAME): $(DEPS) $(INCLUDE) $(OBJS)
-	#$(CC) $(CCFLAGS) $(OBJS) $(DEPS) -o $(NAME)
-	$(CC) $(OBJS) $(DEPS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(OBJS) $(DEPS) -o $(NAME)
+	#$(CC) $(OBJS) $(DEPS) -o $(NAME)
 
 clean : 
 	$(RM) $(OBJS)
