@@ -1,6 +1,6 @@
 # include "../includes/pipex.h"
 
-int		check_command_access(t_pipex *pipex, char **cmd, char **envp)
+int		check_command_access(t_pipex *pipex, char **cmd)
 {
 	int		i;
 	int		status;
@@ -8,6 +8,7 @@ int		check_command_access(t_pipex *pipex, char **cmd, char **envp)
 	char	*aux_path_plus_cmd;
 
 	i = 0;
+	status = 0;
 	while (pipex->path[i])
 	{
 		aux_path_plus_cmd = ft_strjoin(pipex->path[i], SLASH);
@@ -19,11 +20,12 @@ int		check_command_access(t_pipex *pipex, char **cmd, char **envp)
 			free(cmd[0]);
 			cmd[0] = path_plus_cmd;
 			return (0);
+			//return (free(path_plus_cmd), 0);
 		}
 		free(path_plus_cmd);
 		i++;
 	}
-	free_pipex(pipex);
-	throw_error("You don't have access to that command");
-	return (status);
+	free_pipex(&pipex);
+//	throw_error("You don't have access to that command");
+	return (127);
 }

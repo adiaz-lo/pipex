@@ -17,5 +17,5 @@ char	**search_path(char **env)
 		i++;
 	}
 	path = ft_split(aux_str, ':');
-	return (path);
+	return (free(aux_str), path);
 }

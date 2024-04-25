@@ -11,8 +11,8 @@ void	exec_second_child(t_pipex *pipex, char **envp)
 	if (execve(pipex->cmd_2[0], pipex->cmd_2, envp) == -1)
 	{
 		printf("%d\n", pipex->fd_out);
-		free_pipex(pipex);
-		throw_error("execve execution failure");
+		//free_pipex(&pipex);
+		throw_error("execve execution failure in the second child");
 	}
 	printf("%d\n", pipex->fd_out);
 }

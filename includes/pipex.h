@@ -34,8 +34,8 @@ int			check_file(char *file_read);
 int			check_args(int argc, char **argv);
 char		**search_path(char **env);
 void		throw_error(char *str);
-void		free_pipex(t_pipex *);
-int			check_command_access(t_pipex *, char **cmd, char **envp);
+void		free_pipex(t_pipex **);
+int			check_command_access(t_pipex *, char **cmd);
 void		exec_first_child(t_pipex *, char **envp);
 void		exec_second_child(t_pipex *, char **envp);
 
