@@ -64,5 +64,6 @@ int	main (int argc, char **argv, char **envp)
 	//return (WEXITSTATUS(return_code));
 	//return (WEXITSTATUS(status));
 	return_code = return_exec_code(status);
+	fprintf(stderr, "Return code of the last command execution in the 2nd child was: %d\n", return_code);
 	return (return_code);
 }
