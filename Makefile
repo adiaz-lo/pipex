@@ -6,7 +6,7 @@
 #    By: adiaz-lo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 12:49:56 by adiaz-lo          #+#    #+#              #
-#    Updated: 2024/04/25 16:55:40 by adiaz-lo         ###   ########.fr        #
+#    Updated: 2024/05/08 15:29:20 by adiaz-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_DIR = src/
 
 CCFLAGS = -Wall -Werror -Wextra -pedantic
 
-CCFLAGS += -fsanitize=address -g3 -fsanitize=leak
+	# CCFLAGS += -fsanitize=address -g3 -fsanitize=leak
 
 INCLUDE = includes/pipex.h
 

@@ -15,6 +15,6 @@ void	exec_first_child(t_pipex *pipex, char **envp)
 		free(pipex->cmd_1);*/
 		//free_pipex(&pipex);
 		//Perror capture with WIFEXIT, print it & exit(perror)
-		throw_error("execve execution failure in the first child");
+		throw_error("execve execution failure in the first child", 1);
 	}
 }

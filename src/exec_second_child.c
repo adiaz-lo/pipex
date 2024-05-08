@@ -12,7 +12,7 @@ void	exec_second_child(t_pipex *pipex, char **envp)
 	{
 		printf("%d\n", pipex->fd_out);
 		//free_pipex(&pipex);
-		throw_error("execve execution failure in the second child");
+		throw_error("execve execution failure in the second child", 1);
 	}
 	printf("%d\n", pipex->fd_out);
 }

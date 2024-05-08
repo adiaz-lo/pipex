@@ -4,24 +4,31 @@ int	main (int argc, char **argv, char **envp)
 {
 	pid_t	child_pid;
 	t_pipex	*pipex;
-	int		flag;
+	int		flag2;
 	int		return_code;
 	int		status;
 
-	flag = 0;
+	flag2 = 0;
 	if (!(check_args(argc, argv)))
-		return (1);
+	{
+		return (0);
+	}
   //Protect env NULL
 	pipex = save_args(argv, envp);
 //	fprintf(stderr, "%p\n", &pipex->cmd_1);
 //	printf("%p\n", &pipex->cmd_1);
-	flag |= check_command_access(pipex, pipex->cmd_1);
-	flag |= check_command_access(pipex, pipex->cmd_2);
+	flag2 = check_command_access(pipex, pipex->cmd_1);
+	flag2 = check_command_access(pipex, pipex->cmd_2);
+
+	if (flag2)
+	{
+		return (127);
+	}
 	if (pipe(pipex->pipe_fd) == -1)
-		throw_error("Pipe creation error");
+		throw_error("Pipe creation error", 1);
 	child_pid = fork();
 	if (child_pid == -1)
-		throw_error("Child process creation error");
+		throw_error("Child process creation error", 1);
 	if (child_pid == 0)
 	{
 		exec_first_child(pipex, envp);
@@ -38,7 +45,7 @@ int	main (int argc, char **argv, char **envp)
 		close(pipex->pipe_fd[STD_WRITE]);
 		child_pid = fork();
 		if (child_pid == -1)
-			throw_error("Child process creation error");
+			throw_error("Child process creation error", 1);
 		if (child_pid == 0)
 		{
 			exec_second_child(pipex, envp);
@@ -52,18 +59,19 @@ int	main (int argc, char **argv, char **envp)
 			free(pipex->cmd_2);*/
 			/*free(pipex->cmd_2[0]);
 			free(pipex->cmd_2);*/
-			free_pipex(&pipex);
+		//	free_pipex(&pipex);
 			//wait(NULL);
 			//wait(&return_code);
 			//if(wait(&return_code);
 			if(wait(&status) == -1)
-			  throw_error("Error in the wait() function");
+			  throw_error("Error in the wait() function", 1);
 		}
 	}
 	//return (return_code);
 	//return (WEXITSTATUS(return_code));
 	//return (WEXITSTATUS(status));
 	return_code = return_exec_code(status);
-	fprintf(stderr, "Return code of the last command execution in the 2nd child was: %d\n", return_code);
+	//fprintf(stderr, "Return code of the last command execution in the 2nd child was: %d\n", return_code);
+	free_pipex(&pipex);
 	return (return_code);
 }

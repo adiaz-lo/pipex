@@ -26,7 +26,7 @@ int		check_command_access(t_pipex *pipex, char **cmd)
 		free(path_plus_cmd);
 		i++;
 	}
-	free_pipex(&pipex);
-//	throw_error("You don't have access to that command");
-	return (127);
+	//free_pipex(&pipex);
+	//throw_error("You don't have access to that command", 0);
+	return (1);
 }

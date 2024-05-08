@@ -22,7 +22,7 @@ void	free_pipex(t_pipex **pipex)
 	free((*pipex)->path);
 	if (err_stat == -1)
 	{
-		throw_error("Failed to close the file descriptor");
+		throw_error("Failed to close the file descriptor", 1);
 	}
 	free(*pipex);
 }
