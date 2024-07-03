@@ -1,7 +1,7 @@
 #include "../includes/pipex.h"
 
-void	throw_error(char *str)
+void	throw_error(char *str, int i)
 {
 	perror(str);
-	exit(1);
+	exit(i);
 }
