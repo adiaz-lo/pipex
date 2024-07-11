@@ -44,7 +44,7 @@ int		check_outfile(char *file_write)
 	}
 	else
 	{
-		fd = open(file_write, O_WRONLY | O_TRUNC | O_CREAT, 0700);
+		fd = open(file_write, O_WRONLY | O_TRUNC | O_CREAT, 0777);
 		if (fd == -1)
 		{
 			throw_error("File open error", -1);
