@@ -63,7 +63,7 @@ int			check_args(int argc, char **argv)
 	{
 		return (1);
 	}
-	fd2 = check_file(argv[1]);
+	fd2 = check_infile(argv[1]);
 	printf("Bucle\n");
 	if (fd2 == 0)
 	{
