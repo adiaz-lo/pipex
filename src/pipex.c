@@ -22,6 +22,7 @@ int	main (int argc, char **argv, char **envp)
 		throw_error("Pipe creation error", 1);
 	dprintf(2, "Check errors\n");
 	status = exec_pipes(pipex, envp);
+	dprintf(2, "Exit status main is: %d\n", status);
 	dprintf(2, "Check errors 2\n");
 	//return (return_code);
 	//return (WEXITSTATUS(return_code));

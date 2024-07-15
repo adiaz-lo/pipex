@@ -34,6 +34,8 @@ int		exec_pipes(t_pipex *pipex, char **envp)
 		if (child_pid == -1)
 			throw_error("Child process creation error", 1);
 		dprintf(2, "Check errors 11\n");
+		/*if(wait(&status) == -1)
+			  throw_error("Error in the wait() function of the first child", 1);*/
 		if (child_pid == 0)
 		{
 			//No ejecutar execve con cosas mal!!
@@ -54,8 +56,9 @@ int		exec_pipes(t_pipex *pipex, char **envp)
 			//wait(&return_code);
 			//if(wait(&return_code);
 		dprintf(2, "Check errors 13\n");
-			if(wait(&status) == -1)
-			  throw_error("Error in the wait() function", 1);
+			//if(wait(&status) == -1)
+			if(waitpid(child_pid, &status, 0) == -1)
+			  throw_error("Error in the wait() function of the second child", 1);
 		}
 		dprintf(2, "Check errors 14\n");
 	}
