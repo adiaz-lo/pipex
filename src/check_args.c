@@ -10,15 +10,13 @@ static int		check_args_num(int argc)
 	return (1);
 }
 
-int		check_file(char *file_read)
+int		check_infile(char *file_read)
 {
 	int	fd;
 
-	printf("wepaaa\n");
-	if (access(file_read, F_OK) != 0 || access(file_read, R_OK) != 0) 
+	if (access(file_read, O_RDONLY) != 0) 
 	{
-		printf("wepa2aa\n");
-		return (0);
+		return (-1);
 	}
 	else
 	{
@@ -27,9 +25,26 @@ int		check_file(char *file_read)
 		{
 			throw_error("File open error", 0);
 		}
-		printf("wepaaa\n");
 		return (fd);
 	}
+}
+
+int		check_outfile(char *file_write)
+{
+		int	fd;
+
+	if (access(file_write, F_OK) == 0 && access(file_write, W_OK) != 0)
+		return (-1);
+	else
+	{
+		fd = open(file_write, O_WRONLY | O_TRUNC | O_CREAT, 0777);
+		if (fd == -1)
+		{
+			throw_error("File open error", -1);
+		}
+		return (fd);
+	}
+
 }
 
 int			check_args(int argc, char **argv)
@@ -40,14 +55,11 @@ int			check_args(int argc, char **argv)
 	{
 		return (1);
 	}
-	fd2 = check_file(argv[1]);
-	printf("Bucle\n");
+	fd2 = check_infile(argv[1]);
 	if (fd2 == 0)
 	{
-		printf("wepaaa\n");
 		return (1);
 		throw_error("File doesn't exist or you haven't got access to it", 1);
 	}
-	printf("hshshd\n");
 	return (0);
 }

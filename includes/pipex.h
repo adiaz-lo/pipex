@@ -30,7 +30,8 @@ typedef struct s_pipex
 t_pipex		*save_args(char **argv, char **envp);
 void		print_paths(char **path);
 int			main(int argc, char **argv, char **envp);
-int			check_file(char *file_read);
+int			check_infile(char *file_read);
+int			check_outfile(char *file_read);
 int			check_args(int argc, char **argv);
 char		**search_path(char **env);
 void		throw_error(char *str, int i);
@@ -39,5 +40,6 @@ int			check_command_access(t_pipex *, char **cmd);
 void		exec_first_child(t_pipex *, char **envp);
 void		exec_second_child(t_pipex *, char **envp);
 int			return_exec_code(int status);
+int			exec_pipes(t_pipex *, char **envp);
 
 #endif
