@@ -24,6 +24,8 @@ typedef struct s_pipex
 	int		fd_out;
 	char	**path;
 	int		pipe_fd[2];
+	int	cmd_1_is_exec;
+	int	cmd_2_is_exec;
 }t_pipex;
 
 // Functions Declaration

@@ -20,7 +20,7 @@ SRC_DIR = src/
 
 CCFLAGS = -Wall -Werror -Wextra -pedantic
 
-	# CCFLAGS += -fsanitize=address -g3 -fsanitize=leak
+	CCFLAGS += -fsanitize=address -g3 -fsanitize=leak
 
 INCLUDE = includes/pipex.h
 

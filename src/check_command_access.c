@@ -16,6 +16,7 @@ int		check_command_access(t_pipex *pipex, char **cmd)
 		path_plus_cmd = ft_strjoin(aux_path_plus_cmd, cmd[0]);
 		free(aux_path_plus_cmd);
 		status = access(path_plus_cmd, X_OK);
+		//Comprobar acceso a permisos
 		if (status == 0)
 		{
 			free(cmd[0]);

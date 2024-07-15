@@ -9,6 +9,6 @@ t_pipex	*save_args(char **argv, char **envp)
 	pipex->cmd_1 = ft_split(argv[2], ' ');
 	pipex->cmd_2 = ft_split(argv[3], ' ');
 	pipex->fd_out = check_outfile(argv[4]);
-	pipex->path = search_path(envp);
+	pipex->path = search_path(envp);	
 	return (pipex);
 }
