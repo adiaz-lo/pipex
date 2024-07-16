@@ -34,7 +34,7 @@ void		print_paths(char **path);
 int			main(int argc, char **argv, char **envp);
 int			check_infile(char *file_read);
 int			check_outfile(char *file_read);
-int			check_args(int argc, char **argv);
+//int			check_args(int argc, char **argv);
 char		**search_path(char **env);
 void		throw_error(char *str, int i);
 void		free_pipex(t_pipex **);
@@ -43,5 +43,6 @@ void		exec_first_child(t_pipex *, char **envp);
 void		exec_second_child(t_pipex *, char **envp);
 int			return_exec_code(int status);
 int			exec_pipes(t_pipex *, char **envp);
+void		print_error_arg(char *msg, char *file_path);
 
 #endif

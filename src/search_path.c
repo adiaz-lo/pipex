@@ -7,6 +7,7 @@ char	**search_path(char **env)
 	char	*aux_str;
 
 	i = 0;
+	aux_str = NULL;
 	while(env[i])
 	{
 		if (!(ft_strncmp(env[i], PATH_STR, PATH_CHAR_NUM)))
