@@ -6,7 +6,11 @@ int	main (int argc, char **argv, char **envp)
 	int		return_code;
 	int		status;
 
+//	dprintf(2, "argv[2] length: %lu\n", ft_strlen(argv[2]));
+//	dprintf(2, "argv[3] length: %lu\n", ft_strlen(argv[3]));
 	if (argc != 5)
+		return (1);
+	if (ft_strlen(argv[2]) == 0 || ft_strlen(argv[3]) == 0)
 		return (1);
   //Protect env NULL
 	pipex = save_args(argv, envp);
@@ -14,12 +18,19 @@ int	main (int argc, char **argv, char **envp)
 //	printf("%p\n", &pipex->cmd_1);
 	if (pipex->fd_in != -1)
 	{
+		dprintf(2, "cmd 1 length: %lu", ft_strlen(pipex->cmd_1[0]));
+		if (ft_strlen(pipex->cmd_1[0]) == 0)
+			return (1);
+
 		pipex->cmd_1_is_exec = check_command_access(pipex, pipex->cmd_1); //Lanzar error y marcar para que no haga el execve
 		//check_command_access(pipex, pipex->cmd_1); //Lanzar error y marcar para que no haga el execve
 		//dprintf(2, "Cmd 1 is exec value is: %d\n", pipex->cmd_1_is_exec);
 	}
 	if(pipex->fd_out != -1)
 	{
+		dprintf(2, "cmd 2 length: %lu", ft_strlen(pipex->cmd_2[0]));
+		if (ft_strlen(pipex->cmd_2[0]) == 0)
+			return (1);
 		pipex->cmd_2_is_exec = check_command_access(pipex, pipex->cmd_2); //Lanzar error y marcar para que no haga el execve
 		//check_command_access(pipex, pipex->cmd_2); //Lanzar error y marcar para que no haga el execve
 		//dprintf(2, "Cmd 2 is exec value is: %d\n", pipex->cmd_2_is_exec);
